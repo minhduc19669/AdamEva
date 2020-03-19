@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="Eva">
+    <button id="evaTalk" onclick="eva.say()">Eva nói</button>
+    <button id="evaEat" onclick="eva.eat(apple)">Eva ăn táo</button>
+    <button id="evaWeight" onclick="eva.getWeight()">Cân nặng của Eva </button>
+    <img src="https://fandom.vn/wp-content/uploads/2019/04/drm-xuka.jpg" width="100px">
+</div>
+<div class="Adam">
+    <button id="adamTalk" onclick="adam.say()">Adam nói</button>
+    <button id="adamEat" onclick="adam.eat(apple)">Adam ăn táo</button>
+    <button id="adamWeight" onclick="adam.getWeight()">Cân nặng của Adam </button>
+    <img src="https://vignette.wikia.nocookie.net/the-gioi-anime-anime-world/images/a/aa/Download-1525567810.jpg/revision/latest/top-crop/width/360/height/450?cb=20180506005010&path-prefix=vi" width="100px">
+    <button onclick="checkApple(apple)">Check</button>
+</div>
+
+<script>
+    let Apple = function () {
+        this.weight=3;
+        this.status=true;
+
+        this.getWeight = function () {
+            return this.weight;
+        };
+        this.reduced = function () {
+            if (this.weight>0) {
+                this.weight--;
+            }
+        };
+        this.isEmpty = function () {
+            if (this.getWeight()==0){
+                this.status=false;
+            }else if (this.getWeight()>0){
+                this.status=true;
+            }
+            return this.status;
+        }
+    };
+
+    let Person = function (name,gender,weight) {
+        this.name=name;
+        this.gender=gender;
+        this.weight=weight;
+        this.getName=function () {
+            return this.name;
+        };
+
+        this.setName=function (name) {
+            this.name=name;
+        };
+
+        this.getWeight=function () {
+            alert("Cân nặng của"+ this.name +"là"+this.weight);
+            return this.weight;
+        };
+
+        this.setWeight=function (weight) {
+            this.weight=weight;
+        };
+
+        this.checkApple = function () {
+            if (this.isEmpty() == false) {
+                alert('Đã ăn hết táo rồi !!!');
+            }
+        };
+
+        this.eat = function (apple) {
+            apple.reduced();
+            this.weight++;
+            alert('Vừa ăn 1 miếng');
+
+            alert("còn nhiều lắm"+apple.weight);
+        };
+
+        this.say = function () {
+            alert(this.name + ' talk : Hello ^^');
+        }
+    };
+
+    let adam = new Person("Adam", 'famale', 50);
+    let eva = new Person("Eva", 'male', 40);
+    let apple = new Apple();
+</script>
+</body>
+</html>
